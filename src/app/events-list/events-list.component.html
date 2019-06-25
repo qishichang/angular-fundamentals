@@ -1,8 +1,9 @@
 <div>
   <h1>Upcoming Angular Events</h1>
   <hr>
-  <event-thumbnail #thumbnail [event]="event" (eventClick)="handleEventClicked($event)"></event-thumbnail>
-  <h3>{{thumbnail.someProperty}}</h3>
-  <button class="btn btn-primary" (click)="thumbnail.logFoo()">Log me some foo</button>
-  <button class="btn btn-primary" (click)="handleClick()">Log me some foo again</button>
+  <div class="row">
+    <div *ngFor="let event of events" class="col-md-5">
+      <event-thumbnail [event]="event"></event-thumbnail>
+    </div>
+  </div>
 </div>
