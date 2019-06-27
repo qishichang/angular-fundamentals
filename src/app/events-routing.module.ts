@@ -1,10 +1,14 @@
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EventsListComponent } from './events/events-list/events-list.component';
-import { EventDetailsComponent } from './events/event-details/event-details.component';
-import { CreateEventComponent } from './events/create-event/create-event.component';
 import { Error404Component } from './errors/404/404.component';
-import { EventRouteActivator } from './events/event-details/event-route-activator.service';
-import { EventsListResolver } from './events/events-list/events-list-resolver.service';
+
+import {
+  EventsListComponent,
+  EventDetailsComponent,
+  CreateEventComponent,
+  EventRouteActivator,
+  EventsListResolver
+} from './events/index';
 
 const routes: Routes = [
   { path: 'events/create', component: CreateEventComponent, canDeactivate: ['canDeactivateCreateEvent'] },
@@ -15,4 +19,10 @@ const routes: Routes = [
   { path: 'user', loadChildren: './user/user.module#UserModule'}
 ];
 
-export const RoutesRoutes = RouterModule.forRoot(routes);
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class EventsRoutingModule {}
+
+
