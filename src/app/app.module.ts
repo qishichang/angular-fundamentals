@@ -15,6 +15,7 @@ import { CreateEventComponent } from './events/create-event/create-event.compone
 import { Error404Component } from './errors/404/404.component';
 import { EventRouteActivator } from './events/event-details/event-route-activator.service';
 import { EventsListResolver } from './events/events-list/events-list-resolver.service';
+import { UserModule } from './user/user.module';
 
 
 @NgModule({
