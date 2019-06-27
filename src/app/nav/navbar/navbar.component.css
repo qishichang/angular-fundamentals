@@ -11,3 +11,7 @@
     display: none;
   }
 }
+
+li > a.active, li > a.active:focus {
+  color: #F97924;
+}
