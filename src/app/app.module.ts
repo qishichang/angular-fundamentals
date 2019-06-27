@@ -12,10 +12,13 @@ import { EventsListComponent } from './events/events-list/events-list.component'
 import { EventThumbnailComponent } from './events/event-thumbnail/event-thumbnail.component';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { CreateEventComponent } from './events/create-event/create-event.component';
+import { Error404Component } from './errors/404/404.component';
+import { EventRouteActivator } from './events/event-details/event-route-activator.service';
 
 
 @NgModule({
    declarations: [
+      Error404Component,
       NavbarComponent,
       EventsAppComponent,
       EventsListComponent,
@@ -28,11 +31,21 @@ import { CreateEventComponent } from './events/create-event/create-event.compone
       RoutesRoutes
    ],
    providers: [
+      ToastrService,
       EventService,
-      ToastrService
+      EventRouteActivator,
+      { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState}
    ],
    bootstrap: [
       EventsAppComponent
    ]
 })
 export class AppModule { }
+
+export function checkDirtyState(component: CreateEventComponent) {
+   if (component.isDirty) {
+      return window.confirm('You have not saved this event, do you really want to cancel?');
+   }
+
+   return true;
+}
