@@ -8,7 +8,7 @@ import {
   CreateEventComponent,
   EventRouteActivator,
   EventsListResolver
-} from './events/index';
+} from './events';
 
 const routes: Routes = [
   { path: 'events/create', component: CreateEventComponent, canDeactivate: ['canDeactivateCreateEvent'] },

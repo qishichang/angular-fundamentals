@@ -1,9 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { CoreModule } from './core/core.module';
 import { EventsRoutingModule } from './events-routing.module';
-
-import { ToastrService } from './common/toastr.service';
 
 import { NavbarComponent } from './nav/navbar/navbar.component';
 
@@ -16,10 +15,7 @@ import {
    EventThumbnailComponent,
    EventDetailsComponent,
    CreateEventComponent,
-   EventService,
-   EventRouteActivator,
-   EventsListResolver
-} from './events/index';
+} from './events';
 
 @NgModule({
    declarations: [
@@ -33,13 +29,10 @@ import {
    ],
    imports: [
       BrowserModule,
+      CoreModule,
       EventsRoutingModule
    ],
    providers: [
-      ToastrService,
-      EventService,
-      EventRouteActivator,
-      EventsListResolver,
       { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState}
    ],
    bootstrap: [

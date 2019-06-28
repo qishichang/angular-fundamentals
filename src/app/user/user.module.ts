@@ -4,7 +4,7 @@ import { UserRoutingModule } from './user-routing.module';
 
 import {
   ProfileComponent
-} from './index';
+} from '.';
 
 @NgModule({
   imports: [
