@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import {
-  ProfileComponent
+  ProfileComponent,
+  LoginComponent
 } from '.';
 
 const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
+  { path: 'login', component: LoginComponent },
 ];
 
 
