@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  userName: string;
+  password: string;
   loginOverLogin = false;
 
   constructor(private authService: AuthService,
