@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CoreModule } from './core/core.module';
 import { EventsRoutingModule } from './events-routing.module';
@@ -29,6 +30,8 @@ import {
    ],
    imports: [
       BrowserModule,
+      FormsModule,
+      ReactiveFormsModule,
       CoreModule,
       EventsRoutingModule
    ],
