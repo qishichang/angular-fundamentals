@@ -16,6 +16,7 @@ import {
    EventThumbnailComponent,
    EventDetailsComponent,
    CreateEventComponent,
+   CreateSessionComponent,
 } from './events';
 
 @NgModule({
@@ -26,7 +27,8 @@ import {
       EventsListComponent,
       EventThumbnailComponent,
       EventDetailsComponent,
-      CreateEventComponent
+      CreateEventComponent,
+      CreateSessionComponent,
    ],
    imports: [
       BrowserModule,
