@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
@@ -35,8 +34,6 @@ import {
    ],
    imports: [
       BrowserModule,
-      FormsModule,
-      ReactiveFormsModule,
       CoreModule,
       SharedModule,
       EventsRoutingModule
