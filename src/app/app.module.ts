@@ -17,6 +17,7 @@ import {
    EventDetailsComponent,
    CreateEventComponent,
    CreateSessionComponent,
+   SessionListComponent,
 } from './events';
 
 @NgModule({
@@ -29,6 +30,7 @@ import {
       EventDetailsComponent,
       CreateEventComponent,
       CreateSessionComponent,
+      SessionListComponent,
    ],
    imports: [
       BrowserModule,
