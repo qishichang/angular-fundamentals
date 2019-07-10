@@ -19,10 +19,15 @@ export class EventService {
     return subject;
   }
 
-  saveEvent(event) {
+  saveEvent(event: IEvent) {
     event.id = 999;
     event.sessions = [];
     EVENTS.push(event);
+  }
+
+  updateEvent(event: IEvent) {
+    const index = EVENTS.findIndex(e => e.id === event.id);
+    EVENTS[index] = event;
   }
 
   getEvent(id: number): IEvent {
