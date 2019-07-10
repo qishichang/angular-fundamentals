@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
 import { EventsRoutingModule } from './events-routing.module';
 
 import { NavbarComponent } from './nav/navbar/navbar.component';
@@ -37,6 +38,7 @@ import {
       FormsModule,
       ReactiveFormsModule,
       CoreModule,
+      SharedModule,
       EventsRoutingModule
    ],
    providers: [
