@@ -12,6 +12,7 @@ import { EventsAppComponent } from './events-app.component';
 import { Error404Component } from './errors/404/404.component';
 
 import {
+   DurationPipe,
    EventsListComponent,
    EventThumbnailComponent,
    EventDetailsComponent,
@@ -22,6 +23,7 @@ import {
 
 @NgModule({
    declarations: [
+      DurationPipe,
       Error404Component,
       NavbarComponent,
       EventsAppComponent,
