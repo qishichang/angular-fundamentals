@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { AuthService } from '../../user/shared';
 import { ISession, EventService } from '../../events';
 
@@ -22,7 +22,6 @@ export class NavbarComponent implements OnInit {
   searchSessions(searchTerm: string) {
     this.eventService.searchSessions(searchTerm).subscribe(sessions => {
       this.foundSessions = sessions;
-      console.log(sessions);
     });
   }
 }
