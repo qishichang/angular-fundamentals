@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CollapsibleWellComponent, SimpleModalComponent } from './components';
+import { CollapsibleWellComponent, SimpleModalComponent, UpvoteComponent } from './components';
 import { ModalTriggerDirective } from './directives';
 
 @NgModule({
@@ -13,6 +13,7 @@ import { ModalTriggerDirective } from './directives';
   declarations: [
     CollapsibleWellComponent,
     SimpleModalComponent,
+    UpvoteComponent,
     ModalTriggerDirective
   ],
   exports: [
@@ -20,6 +21,7 @@ import { ModalTriggerDirective } from './directives';
     ReactiveFormsModule,
     CollapsibleWellComponent,
     SimpleModalComponent,
+    UpvoteComponent,
     ModalTriggerDirective,
   ]
 })
