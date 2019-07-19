@@ -19,6 +19,7 @@ import {
    CreateEventComponent,
    CreateSessionComponent,
    SessionListComponent,
+   LocationValidatorDirective,
 } from './events';
 
 @NgModule({
@@ -33,6 +34,7 @@ import {
       CreateEventComponent,
       CreateSessionComponent,
       SessionListComponent,
+      LocationValidatorDirective,
    ],
    imports: [
       BrowserModule,

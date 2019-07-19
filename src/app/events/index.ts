@@ -7,3 +7,5 @@ export * from './create-session/create-session.component';
 export * from './events-list/events-list-resolver.service';
 export * from './event-details/event-route-activator.service';
 export * from './session-list/session-list.component';
+export * from './create-event/location-validator.directive';
+
