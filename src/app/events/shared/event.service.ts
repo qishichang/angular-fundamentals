@@ -1,8 +1,8 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject, Observable, of } from 'rxjs';
-import { IEvent, ISession } from './event.model';
 import { catchError } from 'rxjs/operators';
+import { IEvent, ISession } from './event.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,14 +13,7 @@ export class EventService {
 
   getEvents(): Observable<IEvent[]> {
     return this.http.get<IEvent[]>('/api/events')
-      .pipe(catchError(this.handelError('getEvents', [])));
-  }
-
-  private handelError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.log(error);
-      return of(result as T);
-    };
+      .pipe(catchError(this.handelError<IEvent[]>('getEvents', [])));
   }
 
   saveEvent(event: IEvent) {
@@ -34,8 +27,9 @@ export class EventService {
     EVENTS[index] = event;
   }
 
-  getEvent(id: number): IEvent {
-    return EVENTS.find(event => event.id === id);
+  getEvent(id: number): Observable<IEvent> {
+    return this.http.get<IEvent>('/api/events/' + id)
+      .pipe(catchError(this.handelError<IEvent>('getEvent')));
   }
 
   searchSessions(searchTerm: string) {
@@ -55,6 +49,13 @@ export class EventService {
       emitter.emit(results);
     }, 100);
     return emitter;
+  }
+
+  private handelError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.log(error);
+      return of(result as T);
+    };
   }
 }
 
