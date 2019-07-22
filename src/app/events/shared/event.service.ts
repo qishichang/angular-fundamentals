@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subject, Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { IEvent, ISession } from './event.model';
@@ -16,20 +16,19 @@ export class EventService {
       .pipe(catchError(this.handelError<IEvent[]>('getEvents', [])));
   }
 
-  saveEvent(event: IEvent) {
-    event.id = 999;
-    event.sessions = [];
-    EVENTS.push(event);
-  }
-
-  updateEvent(event: IEvent) {
-    const index = EVENTS.findIndex(e => e.id === event.id);
-    EVENTS[index] = event;
-  }
-
   getEvent(id: number): Observable<IEvent> {
     return this.http.get<IEvent>('/api/events/' + id)
       .pipe(catchError(this.handelError<IEvent>('getEvent')));
+  }
+
+  saveEvent(event: IEvent): Observable<IEvent> {
+    const headers = {
+      'headers': new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.post<IEvent>('/api/events', event, headers)
+      .pipe(catchError(this.handelError<IEvent>('saveEvent')));
   }
 
   searchSessions(searchTerm: string) {
@@ -51,7 +50,7 @@ export class EventService {
     return emitter;
   }
 
-  private handelError<T> (operation = 'operation', result?: T) {
+  private handelError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.log(error);
       return of(result as T);
@@ -189,7 +188,7 @@ const EVENTS: IEvent[] = [
         abstract: `In this session, Lukas will present the 
         secret to being awesome, and how he became the President 
         of the United States through his amazing programming skills, 
-        showing how you too can be success with just attitude.`, 
+        showing how you too can be success with just attitude.`,
         voters: ['bradgreen']
       },
     ]
