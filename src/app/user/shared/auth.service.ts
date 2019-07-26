@@ -55,4 +55,16 @@ export class AuthService {
     };
     return this.http.put(`/api/users/${this.currentUser.id}`, this.currentUser, headers);
   }
+
+  logout() {
+    this.currentUser = undefined;
+    const headers = {
+      'headers': new HttpHeaders(
+        {
+          'Content-Type': 'application/json'
+        }
+      )
+    };
+    return this.http.post('/api/logout', {}, headers);
+  }
 }
