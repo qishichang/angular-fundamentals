@@ -9,7 +9,8 @@ import { FormsModule } from '@angular/forms';
 
 import { SessionListComponent } from './session-list.component';
 import { AuthService } from 'app/user/shared';
-import { VoterService } from '../shared';
+import { VoterService, DurationPipe } from '../shared';
+import { UpvoteComponent, CollapsibleWellComponent } from 'app/shared/components';
 
 describe('SessionListComponent', () => {
   let component: SessionListComponent;
@@ -21,8 +22,13 @@ describe('SessionListComponent', () => {
     const mockAuthService = {};
     const mockVoterService = {};
     TestBed.configureTestingModule({
-      declarations: [ SessionListComponent ],
-      imports: [ FormsModule, RouterTestingModule, HttpClientTestingModule ],
+      declarations: [
+        SessionListComponent,
+        UpvoteComponent,
+        DurationPipe,
+        CollapsibleWellComponent
+      ],
+      imports: [FormsModule, RouterTestingModule, HttpClientTestingModule],
       providers: [{
         provide: AuthService,
         useValue: mockAuthService
@@ -32,7 +38,7 @@ describe('SessionListComponent', () => {
       }],
       schemas: []
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -40,10 +46,27 @@ describe('SessionListComponent', () => {
     component = fixture.componentInstance;
     debugEl = fixture.debugElement;
     element = fixture.nativeElement;
-    fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should have the correct session title', () => {
+    component.sessions = [
+      {
+        id: 3,
+        name: 'Session 1',
+        presenter: 'Joe',
+        duration: 1,
+        level: 'Beginner',
+        abstract: 'abstract',
+        voters: ['john', 'bob']
+      }];
+      component.filterBy = 'all';
+      component.sortBy = 'name';
+      component.eventId = 4;
+
+      component.ngOnChanges();
+      fixture.detectChanges();
+
+      expect(element.querySelector('[well-title]').textContent)
+        .toContain('Session 1');
   });
 });
