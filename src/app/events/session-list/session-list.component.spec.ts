@@ -19,8 +19,13 @@ describe('SessionListComponent', () => {
   let debugEl: DebugElement;
 
   beforeEach(async(() => {
-    const mockAuthService = {};
-    const mockVoterService = {};
+    const mockAuthService = {
+      isAuthenticated: () => true,
+      currentUser: { userName: 'Joe'}
+    };
+    const mockVoterService = {
+      userHasVoted: () => true
+    };
     TestBed.configureTestingModule({
       declarations: [
         SessionListComponent,
