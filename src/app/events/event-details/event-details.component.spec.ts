@@ -21,7 +21,7 @@ describe('EventDetailsComponent', () => {
     component.event = <IEvent>{ sessions: [] };
   });
 
-  it('should add a new session when saveNewSession is called ', () => {
+  it('should add a new session when saveNewSession is called', () => {
     mockEventService.saveEvent.and.returnValue(of(true));
     component.saveNewSession(<ISession>{
       name: 'Session 1',
@@ -33,5 +33,21 @@ describe('EventDetailsComponent', () => {
     });
 
     expect(component.event.sessions.length).toBe(1);
+  });
+
+  it('should call saveEvent when saveNewSession is called', () => {
+    mockEventService.saveEvent.and.returnValue(of(true));
+    const session = <ISession>{
+      name: 'Session 1',
+      presenter: 'Joe',
+      duration: 1,
+      level: 'Beginner',
+      abstract: 'abstract',
+      voters: ['john', 'bob']
+    };
+
+    component.saveNewSession(session);
+
+    expect(mockEventService.saveEvent).toHaveBeenCalledWith(component.event);
   });
 });
