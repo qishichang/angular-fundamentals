@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
+import { DebugElement, NO_ERRORS_SCHEMA, Input, Component, OnInit } from '@angular/core';
 
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -10,13 +10,34 @@ import { FormsModule } from '@angular/forms';
 import { SessionListComponent } from './session-list.component';
 import { AuthService } from 'app/user/shared';
 import { VoterService, DurationPipe } from '../shared';
-import { UpvoteComponent, CollapsibleWellComponent } from 'app/shared/components';
+// import { UpvoteComponent, CollapsibleWellComponent } from 'app/shared/components';
 
 describe('SessionListComponent', () => {
   let component: SessionListComponent;
   let fixture: ComponentFixture<SessionListComponent>;
   let element: HTMLElement;
   let debugEl: DebugElement;
+
+  @Component({
+    selector: 'upvote',
+    template: '<div></div>',
+  })
+  class FakeUpvoteComponent implements OnInit {
+    @Input() count: number;
+    @Input() set voted(val) {
+      this.iconColor = val ? 'red' : 'white';
+    }
+    iconColor: string;
+    ngOnInit() {
+    }
+  }
+
+  @Component({
+    selector: 'collapsible-well',
+    template: '<div><ng-content select="[well-title]"></ng-content></div>',
+  })
+  class FakeCollapsibleWellComponent {
+  }
 
   beforeEach(async(() => {
     const mockAuthService = {
@@ -30,8 +51,10 @@ describe('SessionListComponent', () => {
       declarations: [
         SessionListComponent,
         // UpvoteComponent,
+        FakeUpvoteComponent,
         DurationPipe,
-        // CollapsibleWellComponent
+        // CollapsibleWellComponent,
+        FakeCollapsibleWellComponent
       ],
       imports: [FormsModule, RouterTestingModule, HttpClientTestingModule],
       providers: [{
@@ -42,7 +65,7 @@ describe('SessionListComponent', () => {
         useValue: mockVoterService
       }],
       schemas: [
-        NO_ERRORS_SCHEMA
+        // NO_ERRORS_SCHEMA
       ]
     })
       .compileComponents();
